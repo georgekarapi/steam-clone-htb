@@ -1,38 +1,60 @@
-.App {
-  text-align: center;
-}
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
+body {
+  background-color: #131315;
   color: white;
 }
 
-.App-link {
-  color: #61dafb;
+.nav-bar {
+  background-color: #131315;
+  height: 100vh;
+  display: flex;
+  gap: 2rem;
+  flex-direction: column;
+  padding: 2rem 0;
+  align-items: center;
+  width: 80px;
+  border-right-width: 1px;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.nav-icon {
+  cursor: pointer;
+  border-right-width: 4px;
+  border-color: transparent;
+  color: gray;
+}
+
+.nav-icon:hover {
+  border-color: white;
+  color: white;
+}
+
+.nav-icon-active > .nav-icon {
+  border-color: white;
+  color: white;
+}
+
+.game-info-table > li:not(:first-child) {
+  border-top-width: 1px;
+  --tw-border-opacity: 1;
+  border-top-color: rgb(38 38 38 / var(--tw-border-opacity));
+}
+
+.game-info-table > li {
+  padding: 0.5rem;
+}
+
+/* Slick Slider configs */
+.slick-prev {
+  z-index: 100;
+  left: 40px;
+}
+.slick-next {
+  z-index: 100;
+  right: 40px;
+}
+
+.slick-list {
+  margin: 0 -0.15rem;
+}
+.slick-slide > div {
+  padding: 0 0.15rem;
 }
