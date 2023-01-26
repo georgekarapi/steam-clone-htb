@@ -12,11 +12,7 @@ const Store = () => {
 
   const filteredMatch = (el) => {
     if (inputText === '') return true;
-    if (
-      el.name.toUpperCase().includes(inputText.toUpperCase()) ||
-      el.short_description.toUpperCase().includes(inputText.toUpperCase())
-    )
-      return true;
+    if (el.name.toUpperCase().includes(inputText.toUpperCase())) return true;
   };
 
   const changeTab = (val) => {
@@ -37,9 +33,12 @@ const Store = () => {
           value={inputText}
           onChange={(e) => setInputText(e.target.value)}
         ></input>
-        {gameTabs[activeTab].data.filter(filteredMatch).map((game) => (
-          <GameCard game={game} />
-        ))}
+        {gameTabs[activeTab].data
+          .filter(filteredMatch)
+          .slice(0, 10)
+          .map((game) => (
+            <GameCard key={game._id} game={game} addIcon />
+          ))}
       </div>
     </>
   );

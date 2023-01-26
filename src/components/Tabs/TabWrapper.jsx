@@ -11,10 +11,10 @@ const TabWrapper = ({ tabs, initialTab, onChange }) => {
   };
 
   return (
-    <div class="text-sm font-medium text-center border-b dark:text-gray-400 dark:border-gray-700">
-      <ul class="flex flex-wrap -mb-px">
-        {Object.keys(tabs).map((tab) => (
-          <Tab tab={tabs[tab]} onActive={changeTab} isActive={tabs[tab].key === activeTab} />
+    <div className="text-sm font-medium text-center border-b dark:text-gray-400 dark:border-gray-700">
+      <ul className="flex -mb-px overflow-auto">
+        {Object.values(tabs).map((tab) => (
+          <Tab key={tab.key} tab={tab} onActive={changeTab} isActive={tab.key === activeTab} />
         ))}
       </ul>
     </div>
