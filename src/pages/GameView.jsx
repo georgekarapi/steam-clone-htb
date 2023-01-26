@@ -18,7 +18,7 @@ const GameView = () => {
   const { gameId } = useParams();
   const [gameInfo, setGameInfo] = useState();
   const [trending, setTrending] = useState();
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
   const [activePreviewTab, setActivePreviewTab] = useState('screenshots');
   const [previewFrame, setPreviewFrame] = useState();
   const previewRef = useRef(null);
@@ -30,18 +30,10 @@ const GameView = () => {
   };
 
   useEffect(() => {
-    if (!location.hash) {
-      setPreviewFrame();
-      setLoading(true);
-      window.scrollTo(0, 0);
-    }
-  }, [location]);
-
-  useEffect(() => {
-    if (gameInfo) {
-      setLoading(false);
-      window.scrollTo(0, 0);
-    }
+    setLoading(false);
+    setPreviewFrame();
+    setActivePreviewTab('screenshots');
+    window.scrollTo(0, 0);
   }, [gameInfo]);
 
   useEffect(() => {
@@ -50,10 +42,11 @@ const GameView = () => {
   }, [previewRef, previewFrame]);
 
   useEffect(() => {
+    setLoading(true);
     fetchGameInfo(gameId).then((res) => setGameInfo(res[0]));
     fetchTrending().then((res) => setTrending(res));
   }, [gameId]);
-  if (!gameInfo || loading) return <Loading />;
+  if (loading) return <Loading />;
   return (
     <div className="flex flex-col gap-4 m-4">
       <div>
@@ -112,7 +105,7 @@ const GameView = () => {
         {previewFrame && (
           <>
             {previewFrame.type === 'image' ? (
-              <img className="m-auto" src={previewFrame.src} alt="Preview" />
+              <img className="m-auto max-h-[40vh]" src={previewFrame.src} alt="Preview" />
             ) : (
               <video ref={videoRef} width="100%" controls>
                 <source src={previewFrame.src} type="video/webm" />
