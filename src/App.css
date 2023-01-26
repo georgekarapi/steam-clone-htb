@@ -44,6 +44,10 @@ body {
 }
 
 /* Slick Slider configs */
+
+.slick-center .overlay {
+  visibility: visible;
+}
 .slick-prev {
   z-index: 20;
   left: 40px;
